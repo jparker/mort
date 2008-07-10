@@ -97,7 +97,7 @@ __END__
     = field :term, 'Term (Years)'
     = field :price, 'Purchase Price'
     = field :down, 'Down Payment'
-    = field :trate, 'Tax Rate'
+    = field :trate, 'Property Tax Rate'
     = field :hoa, 'HOA Fee'
     %p
       %input{ :type => 'submit', :value => 'Calculate' }
