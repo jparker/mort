@@ -32,7 +32,9 @@ end
 helpers do
   # tag helpers
   def stylesheet(path, media = 'screen,projection')
-    path << '.css' unless path =~ %r{\Ahttp://|\.css\Z}
+    if path !~ %r{\Ahttp://}
+      path = "http://asset#{@i = ((@i || 0) + 1) % 4}.urgetopunt.com/mort/#{path}"
+    end
     %Q{<link rel="stylesheet" type="text/css" href="#{path}" media="#{media}" />}
   end
   
@@ -60,11 +62,11 @@ __END__
   %head
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8' }
     %title Mort - the Mortgage Calculator
-    = stylesheet '/css/screen'
-    = stylesheet '/css/print', 'print'
+    = stylesheet 'screen.css'
+    = stylesheet 'print.css', 'print'
     /[if IE]
-      = stylesheet '/css/ie'
-    = stylesheet '/css/style'
+      = stylesheet 'ie.css'
+    = stylesheet 'style.css'
   %body
     .container
       #bd.span-24
