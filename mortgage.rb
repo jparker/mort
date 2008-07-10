@@ -54,7 +54,7 @@ __END__
 ## layout
 !!! XML
 !!!
-%html
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', :'xml:lang' => 'en', :lang => 'en' }
   %head
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8' }
     %title Mort - the Mortgage Calculator
@@ -80,7 +80,7 @@ __END__
   %input{ :type => 'text', :value => instance_variable_get("@#{name}"), :name => name, :id => name }
 
 ## index
-%form{ :method => :post }
+%form{ :action => '/', :method => :post }
   .span-4
     - if @mortgage && !@mortgage.nan?
       %dl

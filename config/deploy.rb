@@ -3,13 +3,13 @@ set :application, 'mortgage'
 set :user, 'jparker'
 set :use_sudo, 'false'
 
-set :deploy_to, '/home/jparker/apps/mortgage'
+set :deploy_to, '/home/jparker/apps/mort'
 
-set :repository, 'git@github.com:jparker/mortgage.git'
+set :repository, 'git@github.com:jparker/mort.git'
 set :scm, :git
 set :branch, 'master'
 
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 
 role :app, 'papango.urgetopunt.com'
 role :web, 'papango.urgetopunt.com'
@@ -18,7 +18,7 @@ role :db, 'papango.urgetopunt.com'
 namespace :deploy do
   desc 'Custom start task'
   task :start do
-    run "cd #{deploy_to}/current && ./script/start production >#{deploy_to}/log/access.log 2>#{deploy_to}/log/error.log"
+    run "cd #{deploy_to}/current && (./script/start production >#{deploy_to}/shared/log/access.log 2>#{deploy_to}/shared/log/error.log &)"
   end
   
   desc 'Custom stop task'
