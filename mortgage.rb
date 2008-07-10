@@ -69,6 +69,10 @@ __END__
     = stylesheet 'style.css'
   %body
     .container
+      #hd.span-24
+        %h1
+          %a{ :href => '/' }
+            Mort - the Mortgage Calculator
       #bd.span-24
         = yield
       #ft.span-24
@@ -85,7 +89,7 @@ __END__
 
 ## index
 %form{ :action => '/', :method => :post }
-  .span-4
+  .span-4.calculation
     - if @mortgage && !@mortgage.nan?
       %dl
         %dt Mortgage
@@ -94,14 +98,14 @@ __END__
         %dd= numerify(@property_tax)
         %dt HOA
         %dd= numerify(@hoa)
-        %dt Total
+        %dt.total TOTAL
         %dd= numerify(@mortgage + @property_tax + @hoa)
   .span-20.last
-    = field :irate, 'Interest Rate [e.g., 6.25]'
-    = field :term, 'Term (years) [e.g., 30]'
-    = field :price, 'Purchase Price [e.g., 300,000.00]'
-    = field :down, 'Down Payment [e.g., 60,000.00]'
-    = field :trate, 'Property Tax Rate [e.g., 1.25]'
-    = field :hoa, 'HOA Fee, e.g., 400.00'
+    = field :irate, 'Interest Rate [eg, 6.25]'
+    = field :term, 'Term (years) [eg, 30]'
+    = field :price, 'Purchase Price [eg, 300,000]'
+    = field :down, 'Down Payment [eg, 60,000]'
+    = field :trate, 'Property Tax Rate [eg, 1.25]'
+    = field :hoa, 'HOA Fee, eg, 350'
     %p
       %input{ :type => 'submit', :value => 'Calculate' }
