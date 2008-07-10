@@ -42,8 +42,10 @@ helpers do
   
   # text formatting helpers
   def numerify(n)
-    q, r = ('%.2f' % n).split('.')
-    [q.reverse.scan(/\d{1,3}/).join(',').reverse, r].join('.')
+    if n
+      q, r = ('%.2f' % n).split('.')
+      [q.reverse.scan(/\d{1,3}/).join(',').reverse, r].join('.')
+    end
   end
 end
 
