@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+if File.exist?('log/mortgage.pid')
+  pid = File.read('log/mortgage.pid').to_i
+  unless pid == 0
+    Process.kill('INT', pid)
+    File.unlink('log/mortgage.pid')
+  end
+end

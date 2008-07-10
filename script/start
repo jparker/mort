@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+environment = ARGV[0] || 'development'
+pid = fork
+
+if pid
+  File.open('log/mortgage.pid', 'w') {|f| f.puts pid }
+  Process.detach(pid)
+else
+  exec "ruby mortgage.rb -e #{environment}"
+end
