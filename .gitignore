@@ -1,2 +1,2 @@
-log/*.log
-log/pid
+mort.pid
+mort.output
