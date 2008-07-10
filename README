@@ -1,0 +1,13 @@
+== Mort - the Mortgage Calculator
+
+Mort is a simple monthly housing payment calculator built on top of
+Sinatra [http://sinatrarb.com/]. It takes an interest rate, loan term,
+purchase price, down payment, property tax rate and optional HOA fees
+and uses them to calculate the monthly mortgage payment, monthly property
+tax and total monthly payment.
+
+It's really pretty stupid.
+
+But it gave me a chance to fart around with Sinatra.
+
+Copyright (c) 2008 John Parker
