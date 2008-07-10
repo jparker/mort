@@ -1,7 +1,7 @@
 set :application, 'mortgage'
 
 set :user, 'jparker'
-set :use_sudo, 'false'
+set :use_sudo, false
 
 set :deploy_to, '/home/jparker/apps/mort'
 
