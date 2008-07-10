@@ -8,7 +8,7 @@ end
 
 post '/' do
   %w[price down term irate trate hoa].each do |var|
-    instance_variable_set("@#{var}", params[var].to_f)
+    instance_variable_set("@#{var}", params[var].gsub(/[$%,]/, '').to_f)
   end
   
   @mortgage     = mortgage(@price - @down, @irate, @term)
@@ -77,7 +77,7 @@ __END__
 ## field
 %p
   %label{ :for => name }= label
-  %input{ :type => 'text', :value => instance_variable_get("@#{name}"), :name => name, :id => name }
+  %input{ :type => 'text', :value => numerify(instance_variable_get("@#{name}")), :name => name, :id => name }
 
 ## index
 %form{ :action => '/', :method => :post }
@@ -93,11 +93,11 @@ __END__
         %dt Total
         %dd= numerify(@mortgage + @property_tax + @hoa)
   .span-20.last
-    = field :irate, 'Interest Rate'
-    = field :term, 'Term (Years)'
-    = field :price, 'Purchase Price'
-    = field :down, 'Down Payment'
-    = field :trate, 'Property Tax Rate'
-    = field :hoa, 'HOA Fee'
+    = field :irate, 'Interest Rate [e.g., 6.25]'
+    = field :term, 'Term (years) [e.g., 30]'
+    = field :price, 'Purchase Price [e.g., 300,000.00]'
+    = field :down, 'Down Payment [e.g., 60,000.00]'
+    = field :trate, 'Property Tax Rate [e.g., 1.25]'
+    = field :hoa, 'HOA Fee, e.g., 400.00'
     %p
       %input{ :type => 'submit', :value => 'Calculate' }
