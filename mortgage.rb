@@ -38,8 +38,8 @@ helpers do
     %Q{<link rel="stylesheet" type="text/css" href="#{path}" media="#{media}" />}
   end
   
-  def field(name, label = name.to_s.titleize)
-    haml :field, :locals => { :name => CGI.escape(name.to_s), :label => label }, :layout => false
+  def text_field(name, label = name.to_s.titleize)
+    haml :text_field, :locals => { :name => CGI.escape(name.to_s), :label => label }, :layout => false
   end
   
   # text formatting helpers
@@ -82,30 +82,30 @@ __END__
           |
           %a{ :href => 'http://validator.w3.org/check?uri=referer' } Valid XHTML 1.0 Transitional
 
-## field
+## text_field
 %p
   %label{ :for => name }= label
   %input{ :type => 'text', :value => numerify(instance_variable_get("@#{name}")), :name => name, :id => name }
 
 ## index
-%form{ :action => '/', :method => :post }
-  .span-4.calculation
-    - if @mortgage && !@mortgage.nan?
-      %dl
-        %dt Mortgage
-        %dd= numerify(@mortgage)
-        %dt Property Tax
-        %dd= numerify(@property_tax)
-        %dt HOA
-        %dd= numerify(@hoa)
-        %dt.total TOTAL
-        %dd= numerify(@mortgage + @property_tax + @hoa)
-  .span-20.last
-    = field :irate, 'Interest Rate [eg, 6.25]'
-    = field :term, 'Term (years) [eg, 30]'
-    = field :price, 'Purchase Price [eg, 300,000]'
-    = field :down, 'Down Payment [eg, 60,000]'
-    = field :trate, 'Property Tax Rate [eg, 1.25]'
-    = field :hoa, 'HOA Fee, eg, 350'
+.span-4.calculation
+  - if @mortgage && !@mortgage.nan?
+    %dl
+      %dt Mortgage
+      %dd= numerify(@mortgage)
+      %dt Property Tax
+      %dd= numerify(@property_tax)
+      %dt HOA
+      %dd= numerify(@hoa)
+      %dt.total TOTAL
+      %dd= numerify(@mortgage + @property_tax + @hoa)
+.span-20.last
+  %form{ :action => '/', :method => :post }
+    = text_field :irate, 'Interest Rate [eg, 6.25]'
+    = text_field :term, 'Term (years) [eg, 30]'
+    = text_field :price, 'Purchase Price [eg, 300,000]'
+    = text_field :down, 'Down Payment [eg, 60,000]'
+    = text_field :trate, 'Property Tax Rate [eg, 1.25]'
+    = text_field :hoa, 'HOA Fee, eg, 350'
     %p
       %input{ :type => 'submit', :value => 'Calculate' }
