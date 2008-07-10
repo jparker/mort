@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'daemons'
+
+Daemons.run "mortgage.rb",
+  :mode       => :load,
+  :dir        => File.dirname(__FILE__),
+  :dir_mode   => :normal,
+  :log_output => true,
+  :app_name   => 'mortgage'
