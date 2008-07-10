@@ -60,11 +60,11 @@ __END__
   %head
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8' }
     %title Mort - the Mortgage Calculator
-    = stylesheet 'screen'
-    = stylesheet 'print', 'print'
+    = stylesheet '/css/screen'
+    = stylesheet '/css/print', 'print'
     /[if IE]
-      = stylesheet 'ie'
-    = stylesheet 'style'
+      = stylesheet '/css/ie'
+    = stylesheet '/css/style'
   %body
     .container
       #bd.span-24

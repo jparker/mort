@@ -18,12 +18,12 @@ role :db, 'papango.urgetopunt.com'
 namespace :deploy do
   desc 'Custom stop task'
   task :stop do
-    run "cd #{deploy_to}/current && ./script/mortctl stop"
+    run "cd #{deploy_to}/current && ./mortctl stop"
   end
   
   desc 'Custom start task'
   task :start do
-    run "cd #{deploy_to}/current && ./script/mortctl start -- -e production"
+    run "cd #{deploy_to}/current && ./mortctl start -- -e production"
   end
   
   desc 'Custom restart task'
