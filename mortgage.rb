@@ -31,11 +31,12 @@ end
 
 helpers do
   # tag helpers
-  def stylesheet(path, media = 'screen,projection')
+  def stylesheet(path, options = {})
+    options[:media] ||= 'screen,projection'
     if path !~ %r{\Ahttp://}
       path = "http://asset#{@i = ((@i || 0) + 1) % 4}.urgetopunt.com/mort/#{path}"
     end
-    %Q{<link rel="stylesheet" type="text/css" href="#{path}" media="#{media}" />}
+    %Q{<link rel="stylesheet" type="text/css" href="#{path}" media="#{options[:media]}" />}
   end
   
   def text_field(name, label = name.to_s.titleize)
@@ -63,7 +64,7 @@ __END__
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8' }
     %title Mort - the Mortgage Calculator
     = stylesheet 'screen.css'
-    = stylesheet 'print.css', 'print'
+    = stylesheet 'print.css', :media => 'print'
     /[if IE]
       = stylesheet 'ie.css'
     = stylesheet 'style.css'
@@ -106,6 +107,6 @@ __END__
     = text_field :price, 'Purchase Price [eg, 300,000]'
     = text_field :down, 'Down Payment [eg, 60,000]'
     = text_field :trate, 'Property Tax Rate [eg, 1.25]'
-    = text_field :hoa, 'HOA Fee, eg, 350'
+    = text_field :hoa, 'HOA Fee [eg, 350]'
     %p
       %input{ :type => 'submit', :value => 'Calculate' }
