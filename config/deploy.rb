@@ -15,20 +15,17 @@ role :app, 'papango.urgetopunt.com'
 role :web, 'papango.urgetopunt.com'
 role :db, 'papango.urgetopunt.com'
 
-namespace :deploy do
-  desc 'Custom stop task'
+namespace :sinatra do
+  desc 'Stop app server'
   task :stop do
-    run "cd #{deploy_to}/current && ./mortctl stop"
+    run "#{current_path}/mortctl stop"
   end
-  
-  desc 'Custom start task'
+
+  desc 'Start app server'
   task :start do
-    run "cd #{deploy_to}/current && ./mortctl start -- -e production"
-  end
-  
-  desc 'Custom restart task'
-  task :restart do
-    deploy.stop
-    deploy.start
+    run "#{current_path}/mortctl start -- -e production"
   end
 end
+
+before :deploy, 'sinatra:stop'
+after :deploy, 'sinatra:start'
