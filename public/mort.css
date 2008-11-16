@@ -1,0 +1,47 @@
+body {
+  font-size: 14px;
+}
+label {
+  display: block;
+}
+input {
+  font-size: inherit;
+  padding: 0.25em;
+  width: 15em;
+}
+h1 a {
+  text-decoration: none;
+}
+#hd {
+  margin-bottom: 1em;
+}
+.calculation dl, .calculation p {
+  border: 1px solid;
+  padding: 0.5em;
+}
+.info {
+  background-color: #bfb;
+  color: #090;
+}
+.error {
+  background-color: #fbb;
+  color: #900;
+}
+dt.total {
+  border-top: 1px solid;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+}
+#ft {
+  border-top: 1px solid;
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+}
+#ft a {
+  color: inherit;
+}
+#ft a:hover {
+  color: #000;
+}

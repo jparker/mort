@@ -1,0 +1,49 @@
+!!! XML
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', :'xml:lang' => 'en', :lang => 'en' }
+  %head
+    %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8' }
+    %title Mort - the Mortgage Calculator
+    = stylesheet 'screen.css'
+    = stylesheet 'print.css', :media => 'print'
+    /[if IE]
+      = stylesheet 'ie.css'
+    = stylesheet 'mort.css'
+  %body
+    .container
+      #hd.span-24
+        %h1
+          %a{ :href => '/' }
+            Mort - the Mortgage Calculator
+      #bd.span-24
+        .span-8.calculation
+          - if @mortgage.nil?
+            %p.info Fill out the form to the left and press calculate.
+          - elsif @mortgage.nan?
+            %p.error Some of your data was invalid. Please try again.
+          - else
+            %dl.info
+              %dt Mortgage
+              %dd= numerify(@mortgage)
+              %dt Property Tax
+              %dd= numerify(@property_tax)
+              %dt HOA
+              %dd= numerify(@hoa)
+              %dt.total TOTAL
+              %dd= numerify(@mortgage + @property_tax + @hoa)
+        .span-8
+          %form{ :action => '/', :method => :post }
+            = text_field :irate, 'Interest Rate [eg, 6.25]'
+            = text_field :term, 'Term (years) [eg, 30]'
+            = text_field :price, 'Purchase Price [eg, 300,000]'
+            = text_field :down, 'Down Payment [eg, 60,000]'
+            = text_field :trate, 'Property Tax Rate [eg, 1.25]'
+            = text_field :hoa, 'HOA Fee [eg, 350]'
+            %p
+              %input{ :type => 'submit', :value => 'Calculate' }
+      #ft.span-24
+        %p
+          Copyright &copy; 2008
+          %a{ :href => 'http://urgetopunt.org/~jparker/' } John Parker
+          |
+          %a{ :href => 'http://validator.w3.org/check?uri=referer' } Valid XHTML 1.0 Transitional

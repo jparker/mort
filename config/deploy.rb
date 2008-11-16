@@ -1,31 +1,21 @@
 set :application, 'mortgage'
-
-set :user, 'jparker'
-set :use_sudo, false
-
-set :deploy_to, '/home/jparker/apps/mort'
-
 set :repository, 'git@github.com:jparker/mort.git'
+
+set :user, 'appserve'
+set :use_sudo, false
+set :deploy_to, '/var/www/mort'
+
 set :scm, :git
 set :branch, 'master'
+set :deploy_via, :remote_cache
 
-set :deploy_via, :copy
+role :app, 'moa.urgetopunt.com'
+role :web, 'moa.urgetopunt.com'
+role :db, 'moa.urgetopunt.com'
 
-role :app, 'papango.urgetopunt.com'
-role :web, 'papango.urgetopunt.com'
-role :db, 'papango.urgetopunt.com'
-
-namespace :sinatra do
-  desc 'Stop app server'
-  task :stop do
-    run "#{current_path}/mortctl stop"
-  end
-
-  desc 'Start app server'
-  task :start do
-    run "#{current_path}/mortctl start -- -e production"
+namespace :deploy do
+  desc 'Restart application server'
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
   end
 end
-
-before :deploy, 'sinatra:stop'
-after :deploy, 'sinatra:start'

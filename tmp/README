@@ -1,0 +1,2 @@
+Creating a file named restart.txt in this directory will trigger
+Passenger to reload the application.

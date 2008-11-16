@@ -1,0 +1,3 @@
+%p
+  %label{ :for => name }= label
+  %input{ :type => 'text', :value => numerify(instance_variable_get("@#{name}")), :name => name, :id => name }
